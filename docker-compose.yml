@@ -3,7 +3,8 @@ services:
   app:
     build: .
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql_dbgmc:5432/gomycode
+      # postgresql_dbgmc is the container_name defined below
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql_dbgmc:5432/mydb
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -23,8 +24,9 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=gomycode
+      - POSTGRES_DB=mydb
     volumes:
+    # where postgres stores data in linux
       - postgres:/var/lib/postgresql/data
     networks:
       - spring
@@ -32,8 +34,8 @@ services:
     container_name: pgadmingmc
     image: dpage/pgadmin4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=fakhrimarzouki199@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=123456789
+      - PGADMIN_DEFAULT_EMAIL=admin
+      - PGADMIN_DEFAULT_PASSWORD=admin
     ports:
       - 5050:80
     volumes:
