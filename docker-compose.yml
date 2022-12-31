@@ -1,7 +1,8 @@
 version: "3.7"
 services:
   app:
-    build: .
+    container_name: java-app-container
+    image: waelkarma/javaprogram:v1
     environment:
       # postgresql_dbgmc is the container_name defined below
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql_dbgmc:5432/mydb
